@@ -12,3 +12,4 @@
 - Nicholas Dunbar
 - Yoru Li
 - Makoto Tomokiyo
+- Bernice Lee 

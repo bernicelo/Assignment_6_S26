@@ -9,7 +9,7 @@ class PhoneNumber:
 
     def __init__(self, number='0000000000'):
         
-        number_without_punctuation = PhoneNumber.strip_punctuation_and_whitespace(number)
+        number_without_punctuation = PhoneNumber.strip_punctuation(number)
         
         if PhoneNumber.is_valid(number_without_punctuation):
             self._number = number_without_punctuation
@@ -20,7 +20,7 @@ class PhoneNumber:
         return self._number
     
     def set_raw_number(self,number):
-        number_without_punctuation = PhoneNumber.strip_punctuation_and_whitespace(number)
+        number_without_punctuation = PhoneNumber.strip_punctuation(number)
         
         if PhoneNumber.is_valid(number_without_punctuation):
             self._number = number_without_punctuation
@@ -31,9 +31,9 @@ class PhoneNumber:
     def get_area_code(self):
         return self._number[0:3]
     
-    def set_area_code(self,areaCode):
-        if len(areaCode)==3:
-            self._number = areaCode+ self._number[3:]
+    def set_area_code(self,area_code):
+        if len(area_code)==3:
+            self._number = area_code+ self._number[3:]
             if not(PhoneNumber.is_valid(self._number)):
                 raise InvalidPhoneNumber(f"The Phone Number "\
                                      f" {self._number} is not a valid US Number")
@@ -87,7 +87,7 @@ class PhoneNumber:
             return self._number < other._number
     
     @staticmethod
-    def strip_punctuation_and_whitespace(number):
+    def strip_punctuation(number):
         return number.translate(str.maketrans("","",string.punctuation+string.whitespace))
     
     @staticmethod
